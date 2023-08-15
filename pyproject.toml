@@ -13,6 +13,8 @@ packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+sqlalchemy = "^2.0.19"
+alembic = "^1.11.2"
 
 
 [build-system]
