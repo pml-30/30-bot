@@ -4,6 +4,8 @@ import logging
 from aiogram import Bot, Dispatcher
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
+from src.app.core.config import ApplicationSettings
+
 logger = logging.getLogger("app")
 
 
@@ -13,10 +15,12 @@ async def main() -> None:
         format="%(levelname)-8s [%(asctime)s] :: %(name)s : %(message)s"
     )
 
-    bot = Bot(...)
+    settings = ApplicationSettings()
+
+    bot = Bot(settings.bot.token.get_secret_value())
     dp = Dispatcher()
 
-    db_engine = create_async_engine(...)
+    db_engine = create_async_engine(settings.database.dsn)
     session_pool = async_sessionmaker(db_engine, expire_on_commit=False)
 
     try:
