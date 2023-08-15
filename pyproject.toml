@@ -7,7 +7,7 @@ authors = [
     "Ilya <phone.mas@yandex.ru>"
 ]
 license = "MIT"
-readme = "README.md"
+readme = "README.rst"
 repository = "https://github.com/pml-30/30-bot"
 packages = [{include = "src"}]
 
