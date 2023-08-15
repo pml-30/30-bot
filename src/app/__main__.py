@@ -20,7 +20,7 @@ async def main() -> None:
     bot = Bot(settings.bot.token.get_secret_value())
     dp = Dispatcher()
 
-    db_engine = create_async_engine(settings.database.dsn)
+    db_engine = create_async_engine(str(settings.database.dsn))
     session_pool = async_sessionmaker(db_engine, expire_on_commit=False)
 
     try:
@@ -28,6 +28,7 @@ async def main() -> None:
         await dp.start_polling(bot)
     finally:
         await dp.storage.close()
+        await db_engine.dispose()
 
 
 if __name__ == "__main__":
