@@ -7,5 +7,6 @@ from .base import Base
 
 
 class UserModel(Base):
-    tid: Mapped[int] = mapped_column(BIGINT(), primary_key=True, autoincrement=False)
+    uid: Mapped[int] = mapped_column(BIGINT(), primary_key=True)
+    tid: Mapped[int] = mapped_column(BIGINT(), unique=True)
     registration: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True))
