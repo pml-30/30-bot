@@ -35,9 +35,7 @@ class ScheduleDAO:
             "text_color": "fff6f4",
             "warn_color": "ff0060",
             "lessons": lessons,
-            "round": round,
             "len": len(lessons),
-            "warns": [],
             "day": DAYS.get(schedule.weekday, "Неизвестный день"),
             "loc": schedule.location,
         }

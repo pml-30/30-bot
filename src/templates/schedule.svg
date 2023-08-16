@@ -17,17 +17,12 @@
 			</text>
 			<text>
 				{% for i in lessons %}
-						<tspan x="60" y="{{ round(116 + 19.2 * (loop.index - 1), 2) }}" class="t2">{{ i.name }}</tspan>
-				{% endfor %}
-			</text>
-			<text>
-				{% for i in warns %}
-					<tspan x="190" y="{{ round(116 + 19.2 * (loop.index - 1), 2) }}" class="t3">{{ i if i else '' }}</tspan>
+						<tspan x="60" y="{{ 116 + 19.2 * (loop.index - 1) }}" class="t2">{{ i.name }}</tspan>
 				{% endfor %}
 			</text>
 			<text>
 				{% for i in lessons %}
-					<tspan x="287" y="{{ round(116 + 19.2 * (loop.index - 1), 2) }}" class="t2">{{ i.room }}</tspan>
+					<tspan x="287" y="{{ 116 + 19.2 * (loop.index - 1) }}" class="t2">{{ i.room }}</tspan>
 				{% endfor %}
 			</text>	
 </g>
