@@ -13,14 +13,16 @@ class UserDTO:
 class LessonDTO:
     id: int
     name: str
-    room: int
+    room: str
     teacher: str
+
 
 @dataclass
 class DefaultDayDTO:
     weekday: int
-    lessons: list[LessonDTO]
+    lessons: list[int]
     location: str
+
 
 @dataclass
 class DayDTO(DefaultDayDTO):

@@ -15,7 +15,7 @@ class UserModel(Base):
 class LessonModel(Base):
     id: Mapped[int] = mapped_column(SMALLINT(), primary_key=True)
     name: Mapped[str] = mapped_column(VARCHAR())
-    room: Mapped[int] = mapped_column(VARCHAR())
+    room: Mapped[str] = mapped_column(VARCHAR())
     teacher: Mapped[str] = mapped_column(VARCHAR())
 
 
