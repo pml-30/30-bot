@@ -1,12 +1,12 @@
 import asyncio
 import base64
-from io import BytesIO
 from pathlib import Path
 from typing import List
 
 from aiohttp import ClientSession
 from jinja2 import Environment, FileSystemLoader
 from src.app.core.config import ApplicationSettings
+from src.app.core.dto.database import LessonDTO, DefaultDayDTO, DayDTO
 
 DAYS = {
     0: "Понедельник",
@@ -19,7 +19,7 @@ DAYS = {
 }
 
 
-async def render_svg(lessons: List[...], schedule: ..., templates_path: Path) -> str:
+async def render_svg(lessons: List[LessonDTO], schedule: DefaultDayDTO | DayDTO, templates_path: Path) -> str:
     env = Environment(
         loader=FileSystemLoader(templates_path),
         enable_async=True
@@ -34,7 +34,7 @@ async def render_svg(lessons: List[...], schedule: ..., templates_path: Path) ->
         "round": round,
         "len": len(lessons),
         "warns": [],
-        "day": DAYS.get(schedule.day_id, "Неизвестный день"),
+        "day": DAYS.get(schedule.weekday, "Неизвестный день"),
         "loc": schedule.location,
     }
 
