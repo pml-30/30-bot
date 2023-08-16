@@ -7,12 +7,16 @@ from .base import Base
 
 
 class UserModel(Base):
+    __tablename__ = "users"
+
     uid: Mapped[int] = mapped_column(BIGINT(), primary_key=True)
     tid: Mapped[int] = mapped_column(BIGINT(), unique=True)
     registration: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True))
 
 
 class LessonModel(Base):
+    __tablename__ = "lessons"
+
     id: Mapped[int] = mapped_column(SMALLINT(), primary_key=True)
     name: Mapped[str] = mapped_column(VARCHAR())
     room: Mapped[str] = mapped_column(VARCHAR())
@@ -20,6 +24,8 @@ class LessonModel(Base):
 
 
 class DayModel(Base):
+    __tablename__ = "days"
+
     id: Mapped[int] = mapped_column(BIGINT(), primary_key=True)
     date: Mapped[date_type] = mapped_column(DATE())
     weekday: Mapped[int] = mapped_column(SMALLINT())
@@ -28,6 +34,8 @@ class DayModel(Base):
 
 
 class DefaultDayModel(Base):
+    __tablename__ = "default_days"
+
     weekday: Mapped[int] = mapped_column(SMALLINT(), primary_key=True, autoincrement=False)
     lessons: Mapped[list[int]] = mapped_column(ARRAY(INTEGER()))
     location: Mapped[str] = mapped_column(VARCHAR())
