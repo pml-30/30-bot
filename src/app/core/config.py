@@ -5,22 +5,22 @@ from pydantic import BaseModel, PostgresDsn, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class BotModel(BaseModel):
+class Bot(BaseModel):
     token: SecretStr
 
 
-class DatabaseModel(BaseModel):
+class Database(BaseModel):
     dsn: PostgresDsn
 
 
-class ConvertioModel(BaseModel):
+class Convertio(BaseModel):
     key: SecretStr
 
 
 class ApplicationSettings(BaseSettings):
-    bot: BotModel
-    database: DatabaseModel
-    convertio: ConvertioModel
+    bot: Bot
+    database: Database
+    convertio: Convertio
 
     project_dir: ClassVar[Path] = Path(__file__).parent.parent.parent.parent.resolve()
 

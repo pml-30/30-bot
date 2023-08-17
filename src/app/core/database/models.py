@@ -6,7 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from .base import Base
 
 
-class UserModel(Base):
+class User(Base):
     __tablename__ = "users"
 
     uid: Mapped[int] = mapped_column(BIGINT(), primary_key=True)
@@ -14,7 +14,7 @@ class UserModel(Base):
     registration: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True))
 
 
-class LessonModel(Base):
+class Lesson(Base):
     __tablename__ = "lessons"
 
     id: Mapped[int] = mapped_column(SMALLINT(), primary_key=True)
@@ -23,7 +23,7 @@ class LessonModel(Base):
     teacher: Mapped[str] = mapped_column(VARCHAR())
 
 
-class DayModel(Base):
+class Day(Base):
     __tablename__ = "days"
 
     id: Mapped[int] = mapped_column(BIGINT(), primary_key=True)
@@ -33,7 +33,7 @@ class DayModel(Base):
     location: Mapped[str] = mapped_column(VARCHAR())
 
 
-class DefaultDayModel(Base):
+class DefaultDay(Base):
     __tablename__ = "default_days"
 
     weekday: Mapped[int] = mapped_column(SMALLINT(), primary_key=True, autoincrement=False)

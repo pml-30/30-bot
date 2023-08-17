@@ -1,5 +1,8 @@
-from .database import UserDTO
+from .database import User, Lesson, DefaultDay, Day
 
 __all__ = (
-    "UserDTO",
+    "User",
+    "Lesson",
+    "DefaultDay",
+    "Day"
 )

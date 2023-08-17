@@ -3,14 +3,14 @@ from datetime import datetime, date as date_type
 
 
 @dataclass
-class UserDTO:
+class User:
     uid: int
     tid: int
     registration: datetime
 
 
 @dataclass
-class LessonDTO:
+class Lesson:
     id: int
     name: str
     room: str
@@ -18,13 +18,13 @@ class LessonDTO:
 
 
 @dataclass
-class DefaultDayDTO:
+class DefaultDay:
     weekday: int
     lessons: list[int]
     location: str
 
 
 @dataclass
-class DayDTO(DefaultDayDTO):
+class Day(DefaultDay):
     id: int
     date: date_type
