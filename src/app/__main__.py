@@ -4,7 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
-from src.app.core.config import ApplicationSettings
+from app.core.config import ApplicationSettings
 
 logger = logging.getLogger("app")
 

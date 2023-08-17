@@ -5,7 +5,7 @@ from pathlib import Path
 from aiohttp import ClientSession
 from jinja2 import Environment, FileSystemLoader
 
-from src.app.core import dto
+from app.core import dto
 
 DAYS = {
     0: "Понедельник",

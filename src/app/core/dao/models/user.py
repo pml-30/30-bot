@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.app.core import dto
-from src.app.core.database import models
+from app.core import dto
+from app.core.database import models
 
 
 class User:
