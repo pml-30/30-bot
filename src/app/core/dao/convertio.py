@@ -23,7 +23,8 @@ class Convertio:
         self._project_dir = project_dir
         self.__api_key = convertio_api_key
 
-    async def render_svg(self, lessons: list[dto.Lesson], schedule: dto.DefaultDay, templates_path: Path) -> str:
+    # noinspection PyMethodMayBeStatic
+    async def render_svg(self, lessons: list[dto.Lesson], schedule: dto.Day, templates_path: Path) -> str:
         env = Environment(
             loader=FileSystemLoader(templates_path),
             enable_async=True
@@ -42,40 +43,50 @@ class Convertio:
 
         return await env.get_template("schedule.svg").render_async(data)
 
-    async def render_png(self, input_svg: str) -> bytes:
+    async def send_svg(self, file: str) -> str:
         data = {
             "apikey": self.__api_key,
             "input": "base64",
-            "file": base64.b64encode(input_svg.encode()).decode(),
+            "file": file,
             "filename": "sh.svg",
             "outputformat": "png"
         }
-
         async with ClientSession() as session:
             async with session.post("https://api.convertio.co/convert", json=data) as response:
                 json = await response.json()
                 if json["status"] == "ok":
-                    conv_id = json["data"]["id"]
+                    return json["data"]["id"]
                 else:
                     raise RuntimeError("Convertio response is bad: {}".format(json))
 
+    # noinspection PyMethodMayBeStatic
+    async def get_png_url(self, conv_id: str) -> str:
+        async with ClientSession() as session:
             while True:
                 async with session.get(f"https://api.convertio.co/convert/{conv_id}/status") as response:
                     json = await response.json()
                     if json["status"] == "ok":
                         if json["data"]["step"] == "finish":
-                            download_url = json["data"]["output"]["url"]
-                            break
+                            return json["data"]["output"]["url"]
                     else:
                         raise RuntimeError("Convertio response is bad: {}".format(json))
                 await asyncio.sleep(1)
-            # else:
-            #     raise RuntimeError("Conversion not ended: {}".format(json))
 
+    # noinspection PyMethodMayBeStatic
+    async def download_png(self, download_url: str) -> bytes:
+        async with ClientSession() as session:
             async with session.get(download_url) as response:
                 return await response.content.read()
 
-    async def get_schedule(self, lessons: list[dto.Lesson], schedule: dto.DefaultDay) -> bytes:
-        svg = await self.render_svg(lessons, schedule, self._project_dir / "src" / "templates")
-        png = await self.render_png(svg)
+    async def render_png(self, input_svg: str) -> bytes:
+        conv_id = await self.send_svg(base64.b64encode(input_svg.encode()).decode())
+        download_url = await self.get_png_url(conv_id)
+        png = await self.download_png(download_url)
+
         return png
+
+
+async def render_schedule(self, lessons: list[dto.Lesson], schedule: dto.Day) -> bytes:
+    svg = await self.render_svg(lessons, schedule, self._project_dir / "src" / "templates")
+    png = await self.render_png(svg)
+    return png
