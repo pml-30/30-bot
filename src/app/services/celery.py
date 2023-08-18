@@ -7,7 +7,7 @@ settings = ApplicationSettings()
 
 app = Celery(
     "tasks",
-    broker=settings.broker.dsn,
+    broker=str(settings.rabbitmq.dsn),
     backend=str(settings.redis.dsn),
     include=["app.services.tasks"],
 )
