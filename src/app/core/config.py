@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import ClassVar
 
-from pydantic import BaseModel, PostgresDsn, SecretStr
+from pydantic import BaseModel, PostgresDsn, SecretStr, RedisDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -13,6 +13,14 @@ class Database(BaseModel):
     dsn: PostgresDsn
 
 
+class Redis(BaseModel):
+    dsn: RedisDsn
+
+
+class Broker(BaseModel):
+    dsn: str
+
+
 class Convertio(BaseModel):
     key: SecretStr
 
@@ -21,6 +29,8 @@ class ApplicationSettings(BaseSettings):
     bot: Bot
     database: Database
     convertio: Convertio
+    redis: Redis
+    broker: Broker
 
     project_dir: ClassVar[Path] = Path(__file__).parent.parent.parent.parent.resolve()
 
