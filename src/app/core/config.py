@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import ClassVar
 
-from pydantic import BaseModel, PostgresDsn, SecretStr, RedisDsn
+from pydantic import BaseModel, PostgresDsn, SecretStr, RedisDsn, AmqpDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -18,7 +18,7 @@ class Redis(BaseModel):
 
 
 class Broker(BaseModel):
-    dsn: str
+    dsn: AmqpDsn
 
 
 class Convertio(BaseModel):

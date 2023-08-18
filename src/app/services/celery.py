@@ -18,7 +18,7 @@ app.conf.update(
     beat_schedule={
         "update_schedule": {
             "task": "app.services.tasks.update_schedule",
-            "schedule": crontab(minute=0, hour=0),
+            "schedule": crontab(minute="0", hour="0"),
         }
     },
     timezone="Europe/Moscow"
