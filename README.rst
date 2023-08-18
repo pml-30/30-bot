@@ -12,11 +12,11 @@
 
 .. code-block:: shell
 
-    export BOT_TOKEN=<your_bot_token>
-    export DATABASE_DSN=<your_database_dsn>
-    export CONVERTIO_KEY=<your_convertio_key
-    export REDIS_DSN=<your_redis_dsn
-    export BROKER_DSN=<your_broker_dsn>
+    export BOT_TOKEN=your_bot_token
+    export POSTGRES_DSN=your_database_dsn
+    export CONVERTIO_KEY=your_convertio_key
+    export REDIS_DSN=your_redis_dsn
+    export RABBITMQ_DSN=your_broker_dsn
 
 Технологии
 ==========

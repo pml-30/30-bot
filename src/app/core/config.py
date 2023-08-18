@@ -9,7 +9,7 @@ class Bot(BaseModel):
     token: SecretStr
 
 
-class Database(BaseModel):
+class PostgreSQL(BaseModel):
     dsn: PostgresDsn
 
 
@@ -17,7 +17,7 @@ class Redis(BaseModel):
     dsn: RedisDsn
 
 
-class Broker(BaseModel):
+class RabbitMQ(BaseModel):
     dsn: AmqpDsn
 
 
@@ -27,10 +27,10 @@ class Convertio(BaseModel):
 
 class ApplicationSettings(BaseSettings):
     bot: Bot
-    database: Database
+    postgres: PostgreSQL
     convertio: Convertio
     redis: Redis
-    broker: Broker
+    rabbitmq: RabbitMQ
 
     project_dir: ClassVar[Path] = Path(__file__).parent.parent.parent.parent.resolve()
 
