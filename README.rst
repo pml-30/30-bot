@@ -3,7 +3,7 @@
 ######
 
 Запуск
-=====
+======
 
 .. code-block:: shell
 
@@ -17,3 +17,13 @@
     export CONVERTIO_KEY=<your_convertio_key
     export REDIS_DSN=<your_redis_dsn
     export BROKER_DSN=<your_broker_dsn>
+
+Технологии
+==========
+
+* **Python 3.11** - язык программирования
+* **PostgreSQL 15.4** - СУБД
+* **RabbitMQ** - брокер сообщений
+* **Redis** - вспомогательная СУБД
+* **Docker** - контейнеризация
+* **Kubernetes** - оркестровка контейнеризации
