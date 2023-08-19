@@ -20,7 +20,7 @@ async def main() -> None:
     bot = Bot(settings.bot.token.get_secret_value())
     dp = Dispatcher()
 
-    db_engine = create_async_engine(str(settings.database.dsn))
+    db_engine = create_async_engine(str(settings.postgres.dsn))
     session_pool = async_sessionmaker(db_engine, expire_on_commit=False)
 
     try:

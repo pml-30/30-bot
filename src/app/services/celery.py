@@ -21,5 +21,6 @@ app.conf.update(
             "schedule": crontab(minute="0", hour="0"),
         }
     },
-    timezone="Europe/Moscow"
+    timezone="Europe/Moscow",
+    broker_connection_retry_on_startup=True
 )
